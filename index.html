@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Three interactive security lessons about chosen inputs, computational work, and information leaks.">
+  <title>Input &amp; Work | Security Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="models.js"></script>
+  <script defer src="app.js"></script>
+  <script defer src="regex-lab.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to experiments</a>
+<header class="topbar"><a class="brand" href="#">i/w <span>SECURITY LAB</span></a><span class="course">SE / CprE 4210 <span class="dot">●</span> LEARNING SPRINT 03</span></header>
+<main id="main">
+  <section class="intro">
+    <p class="eyebrow">A SMALL INPUT. A DIFFERENT OUTCOME.</p>
+    <h1>What does your<br><span>input reveal?</span></h1>
+    <p class="lede">A short message can make a program work harder or give away a clue. Try three small experiments: pile up keys, probe a toy PIN, and solve a pattern-matching puzzle.</p>
+    <div class="path"><span>01 &nbsp; Control the input</span><span>→</span><span>02 &nbsp; Observe the work</span><span>→</span><span>03 &nbsp; Explain the risk</span></div>
+  </section>
+  <nav class="lab-nav" aria-label="Experiments"><a href="#complexity">01 &nbsp; Hash collisions <span>↗</span></a><a href="#side-channel">02 &nbsp; PIN signals <span>↗</span></a><a href="#backtracking">03 &nbsp; Pattern puzzle <span>↗</span></a></nav>
+
+  <section class="lab" id="complexity" aria-labelledby="hash-title">
+    <div class="section-heading"><div><p class="eyebrow">EXPERIMENT 01 / AVAILABILITY</p><h2 id="hash-title">Make a small table do more work.</h2></div><span class="tag">Algorithmic complexity</span></div>
+    <p class="section-copy">Think of eight labeled drawers. A rule sends each key to a drawer, called a <strong>bucket</strong>. Before adding a key, the table checks the keys already there for a duplicate. Different keys sent to the same bucket <strong>collide</strong>: <code>bucket = key % 8</code>. You control the keys; the consequence is extra work.</p>
+    <div class="experiment-grid">
+      <div class="controls panel">
+        <h3>Choose the workload</h3>
+        <label for="key-count">Number of distinct keys <output id="count-label" for="key-count">16</output></label>
+        <input id="key-count" type="range" min="1" max="32" value="16">
+        <div class="range-labels"><span>1 key</span><span>32 keys</span></div>
+        <label for="distribution">Key distribution</label>
+        <select id="distribution"><option value="spread">Spread across buckets: 0, 1, 2…</option><option value="colliding">All collide: 0, 8, 16…</option></select>
+        <button id="compare-inputs" class="secondary" type="button">Switch distribution</button>
+        <div class="prompt"><strong>Try this</strong><p>Keep 16 keys. Switch distributions. Did the input size change, or only its structure?</p></div>
+      </div>
+      <div class="panel visualization">
+        <div class="viz-heading"><h3>Inside the hash table</h3><span>8 buckets · separate chaining</span></div>
+        <div id="buckets" aria-label="Keys grouped by bucket"></div>
+        <div class="stats" aria-live="polite"><div><strong id="hash-cost">8</strong><span>key comparisons</span></div><div><strong id="chain-length">2</strong><span>longest chain</span></div><div><strong id="alternative-cost">120</strong><span id="alternative-label">if all keys collide</span></div></div>
+      </div>
+    </div>
+    <div class="two-columns">
+      <div class="panel"><div class="viz-heading"><h3>Cost as the input grows</h3><span>Equality comparisons to insert all keys</span></div><div id="cost-chart"></div><p class="chart-note"><span class="legend colliding"></span> All collide &nbsp; <span class="legend spread"></span> Spread across 8 buckets</p></div>
+      <div class="explanation"><h3>Where the extra work comes from</h3><p id="hash-explanation"></p><pre><code>for each key:
+  bucket = key % 8
+  for each existing key in bucket:
+    compare(existing, key)
+  append key to bucket</code></pre><p>All-collision insertion costs <code>0 + 1 + … + (n−1) = n(n−1)/2</code>, or O(n²). With just eight fixed buckets, even spread input eventually grows quadratically, but with a smaller coefficient. Expected O(n) total insertion requires keeping the load factor bounded as the table grows.</p></div>
+    </div>
+    <details><summary>What would help in a real system?</summary><p>Use a hash strategy designed for adversarial input, grow the table as needed, bound request sizes, and consider structures that bound collision cost. Resizing alone does not guarantee safety against keys chosen to collide. The modulo hash here is deliberately weak; it is a teaching model, not a claim about every hash table.</p></details>
+  </section>
+
+  <section class="lab" id="side-channel" aria-labelledby="pin-title">
+    <div class="section-heading"><div><p class="eyebrow">EXPERIMENT 02 / CONFIDENTIALITY</p><h2 id="pin-title">A rejection can still tell you something.</h2></div><span class="tag">Side channels</span></div>
+    <p class="section-copy">Try a four-digit guess. Change the checker to see which observations depend on the toy PIN. The mismatch-count mode follows Sprint 3 problem two; early exit follows Quiz 6.</p>
+    <div class="experiment-grid">
+      <form id="pin-form" class="controls panel" novalidate>
+        <h3>Probe the checker</h3>
+        <label for="checker">Checker behavior</label><select id="checker"><option value="mismatch">Leaky: report mismatch count</option><option value="prefix">Leaky: stop at first mismatch</option><option value="fixed">Improved model: fixed work</option></select>
+        <label for="guess">Your four-digit guess</label><input id="guess" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" value="0000" autocomplete="off" spellcheck="false" aria-describedby="guess-help pin-error">
+        <span id="guess-help" class="help">A public toy PIN is used only in this page.</span>
+        <button type="submit">Check guess <span>→</span></button><p id="pin-error" class="error" role="alert"></p>
+        <label class="checkbox"><input id="show-pin" type="checkbox"> Reveal the public teaching PIN</label><p id="public-pin" hidden>Toy PIN: <code>4210</code>. This is not a real credential.</p>
+      </form>
+      <div class="panel visualization">
+        <div class="viz-heading"><h3>What the observer sees</h3><span id="signal-kind">Mismatch signal</span></div>
+        <div class="signal-result" aria-live="polite"><div><span class="eyebrow">OBSERVABLE SIGNAL</span><strong id="signal">3</strong><span id="signal-unit">mismatching positions</span></div><span id="auth-result" class="result-badge">Rejected</span></div>
+        <p id="mode-explanation"></p>
+        <details id="trace-details"><summary>Inspect internal comparisons (learner view)</summary><p class="help">These details explain the model. They are not part of the observer's output.</p><div id="trace"></div><pre id="pin-code"></pre></details>
+      </div>
+    </div>
+    <div class="panel sweep-panel">
+      <div class="sweep-heading"><div><p class="eyebrow">ONE POSITION, TEN CANDIDATES</p><h3>Can you spot a useful signal?</h3></div><div class="sweep-controls"><label for="position">Change position</label><select id="position"><option value="0">1st digit</option><option value="1">2nd digit</option><option value="2">3rd digit</option><option value="3">4th digit</option></select><button id="run-sweep" type="button">Try digits 0–9</button></div></div>
+      <p>Keep the other three digits from your guess. Click a candidate below to use it as your next guess. All bars share a scale of 0–4 signal units.</p>
+      <div id="sweep-empty" class="empty-state">Run a sweep to compare ten observations side by side.</div><div id="sweep-results" class="sweep-results" hidden></div><p id="sweep-summary" aria-live="polite"></p>
+    </div>
+    <div class="two-columns takeaways"><div><h3>Predict, test, explain</h3><ol><li>In mismatch mode, start with <code>0000</code>. Sweep each position and keep the digit with the smallest signal.</li><li>Reset your guess to <code>0000</code>, then switch to early exit. Sweep the third position before correcting the first. Why are the bars flat?</li><li>Switch to fixed work and repeat. What information is still revealed by “Accepted” or “Rejected”?</li></ol></div><div><h3>What this model does and does not prove</h3><p>Mismatch counting checks all four digits, yet leaks their agreement through its output. In early-exit mode, a longer correct prefix can cause more work. A full match and a last-digit mismatch both take four comparisons.</p><p>The fixed-work model compares every digit and exposes no mismatch count. For equal-length guesses, its work signal is flat. Real timing also depends on compilers, hardware, and noise. JavaScript operation counts do not establish constant-time security; use vetted comparison primitives in real authentication systems.</p></div></div>
+  </section>
+  <section class="lab" id="backtracking" aria-labelledby="regex-title">
+    <div class="section-heading"><div><p class="eyebrow">EXPERIMENT 03 / AVAILABILITY</p><h2 id="regex-title">One extra symbol. Many second guesses.</h2></div><span class="tag">Regex backtracking</span></div>
+    <p class="section-copy">A regular expression is a rule for matching text. This puzzle accepts one or more letters <code>a</code>. A complicated way to write that rule can make a matcher try many ways to group the same letters. You choose the input and step through those choices.</p>
+    <div class="experiment-grid">
+      <div class="controls panel">
+        <h3>Build a near match</h3>
+        <label for="regex-length">Number of letters a <output id="regex-length-label" for="regex-length">4</output></label><input type="range" id="regex-length" min="2" max="8" value="4"><div class="range-labels"><span>2 letters</span><span>8 letters</span></div>
+        <label class="checkbox"><input type="checkbox" id="regex-failure" checked> Add ! at the end to force failure</label>
+        <label for="regex-rule">Matching rule</label><select id="regex-rule"><option value="nested">Repeated groups: ^(a+)+$</option><option value="simple">Simpler rule: ^a+$</option></select>
+        <div class="prompt"><strong>Predict before you run</strong><p>For <code>aaaa!</code> and repeated groups, how many complete groupings of the four letters are possible?</p><label for="regex-prediction">Your prediction</label><select id="regex-prediction"><option value="">Choose a count</option><option value="4">4 groupings</option><option value="8">8 groupings</option><option value="16">16 groupings</option></select><button id="check-prediction" type="button" class="secondary">Check prediction</button><p id="prediction-feedback" aria-live="polite"></p></div>
+      </div>
+      <div class="panel visualization">
+        <div class="viz-heading"><h3>Follow the grouping choices</h3><span>Small search model · no real regex execution</span></div>
+        <p>Input: <code id="regex-input">aaaa!</code> &nbsp; Rule: <code id="regex-pattern">^(a+)+$</code></p>
+        <div id="regex-groups" class="regex-groups" aria-label="Current grouping"></div>
+        <p id="regex-status" aria-live="polite"></p>
+        <div class="regex-actions"><button type="button" id="regex-step">Try next grouping →</button><button type="button" id="regex-finish" class="secondary">Finish search</button><button type="button" id="regex-reset" class="secondary">Reset</button></div>
+        <div class="stats"><div><strong id="regex-tried">0</strong><span>complete groupings tried</span></div><div><strong id="regex-possible">8</strong><span>possible groupings</span></div><div><strong id="regex-verdict">?</strong><span>match result</span></div></div>
+        <details><summary>Show the recent search trail</summary><ol id="regex-history"></ol><p class="help">The trail shows the most recent eight groupings. Brackets mark groups of a; ! is outside the allowed rule.</p></details>
+      </div>
+    </div>
+    <div class="two-columns takeaways"><div><h3>Why does the ending matter?</h3><p><code>a+</code> means one or more a's. In <code>(a+)+</code>, the outside + repeats those groups. The same four letters can be <code>[aaaa]</code>, <code>[aaa][a]</code>, or several other groupings. The anchors ^ and $ require the whole input to fit.</p><p>Without !, the first complete grouping succeeds. With !, regrouping cannot remove the bad ending. A backtracking matcher may keep searching before it rejects the input.</p><p>Try four letters, then five, with ! checked. The possible complete groupings double, from 8 to 16. Each gap between letters can either split a group or join it: <code>2^(n−1)</code> choices.</p></div><div><h3>Change the rule, keep the meaning</h3><p>Switch to <code>^a+$</code>. For these inputs it accepts the same text, but a direct scan can inspect each character once, with no alternative groupings. The display counts one candidate and reports character inspections separately.</p><p>This is an illustrative enumeration of <strong>complete groupings</strong>, not a regex engine's exact execution order, all partial paths, elapsed time, or a measured slowdown ratio. Engines and optimizations vary. The email pattern in question three is different; this small example isolates ambiguous repetition.</p><p>In real systems, review ambiguous patterns, use suitable matching engines, and limit input and execution resources. <a href="https://community.owasp.org/attacks/Regular_expression_Denial_of_Service_-_ReDoS" target="_blank" rel="noopener noreferrer">Read OWASP's ReDoS explanation ↗</a></p></div></div>
+  </section>
+  <section class="connection"><p class="eyebrow">THE CONNECTION</p><h2>Chosen input → changed behavior → security consequence.</h2><p>Collisions and repeated matching attempts increase work and threaten <strong>availability</strong>. Secret-dependent output or work can reveal information and threaten <strong>confidentiality</strong>. Ask both: “How much work can this input cause?” and “What can someone learn from the response?”</p></section>
+  <footer><span>INPUT &amp; WORK / SE 4210</span><span>Local, bounded simulations. No network requests or real delays.</span><a href="README.md">About this project ↗</a></footer>
+</main>
+</body>
+</html>

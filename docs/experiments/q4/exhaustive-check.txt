@@ -1,0 +1,39 @@
+ALL 4651 / 46656 cyclic; theorem matches all layouts
+BASELINE 671 / 7776
+TWO RECTANGLES AT i=4,5 1296 / 1296
+SINGLE position=0 type=0 rewards=671 total=7776
+SINGLE position=0 type=1 rewards=671 total=7776
+SINGLE position=0 type=2 rewards=671 total=7776
+SINGLE position=0 type=3 rewards=1296 total=7776
+SINGLE position=0 type=4 rewards=671 total=7776
+SINGLE position=0 type=5 rewards=671 total=7776
+SINGLE position=1 type=0 rewards=671 total=7776
+SINGLE position=1 type=1 rewards=671 total=7776
+SINGLE position=1 type=2 rewards=671 total=7776
+SINGLE position=1 type=3 rewards=1296 total=7776
+SINGLE position=1 type=4 rewards=671 total=7776
+SINGLE position=1 type=5 rewards=671 total=7776
+SINGLE position=2 type=0 rewards=671 total=7776
+SINGLE position=2 type=1 rewards=671 total=7776
+SINGLE position=2 type=2 rewards=671 total=7776
+SINGLE position=2 type=3 rewards=1296 total=7776
+SINGLE position=2 type=4 rewards=671 total=7776
+SINGLE position=2 type=5 rewards=671 total=7776
+SINGLE position=3 type=0 rewards=671 total=7776
+SINGLE position=3 type=1 rewards=671 total=7776
+SINGLE position=3 type=2 rewards=671 total=7776
+SINGLE position=3 type=3 rewards=1296 total=7776
+SINGLE position=3 type=4 rewards=671 total=7776
+SINGLE position=3 type=5 rewards=671 total=7776
+SINGLE position=4 type=0 rewards=671 total=7776
+SINGLE position=4 type=1 rewards=671 total=7776
+SINGLE position=4 type=2 rewards=671 total=7776
+SINGLE position=4 type=3 rewards=1296 total=7776
+SINGLE position=4 type=4 rewards=671 total=7776
+SINGLE position=4 type=5 rewards=671 total=7776
+SINGLE position=5 type=0 rewards=0 total=7776
+SINGLE position=5 type=1 rewards=0 total=7776
+SINGLE position=5 type=2 rewards=0 total=7776
+SINGLE position=5 type=3 rewards=4651 total=7776
+SINGLE position=5 type=4 rewards=0 total=7776
+SINGLE position=5 type=5 rewards=0 total=7776

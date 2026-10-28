@@ -1,0 +1,328 @@
+[
+  {
+    "name": "original",
+    "phase": "baseline",
+    "zero_based_positions": null,
+    "shape": "original Circle at i=3",
+    "changed_lines": [],
+    "scores": [
+      9,
+      6,
+      6,
+      12,
+      8,
+      2,
+      7,
+      5,
+      13,
+      9
+    ],
+    "driver_sha256": "3a562ffa5604b5c983f1c35fabc75e09eeae5275156f5198cf4934b67f2c2e70"
+  },
+  {
+    "name": "explore-rectangle-0",
+    "phase": "exploration",
+    "zero_based_positions": [
+      0
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      16,
+      17,
+      21
+    ],
+    "driver_sha256": "07c9a11bff9a6a7e2690247da567a8d511fb68360f6eaae018a6d5898657f176"
+  },
+  {
+    "name": "explore-rectangle-1",
+    "phase": "exploration",
+    "zero_based_positions": [
+      1
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      9,
+      22,
+      10
+    ],
+    "driver_sha256": "14bd20d017008834dcebe0078321d07ef6c8f03b4e621a0de86f5b1537052be6"
+  },
+  {
+    "name": "explore-rectangle-2",
+    "phase": "exploration",
+    "zero_based_positions": [
+      2
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      23,
+      12,
+      14
+    ],
+    "driver_sha256": "7dedbe379a1aba8a9bab3852aa6bcb5922c8d883aa0a5bead982ef83458029f7"
+  },
+  {
+    "name": "explore-rectangle-3",
+    "phase": "exploration",
+    "zero_based_positions": [
+      3
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      42
+    ],
+    "scores": [
+      19,
+      16,
+      20
+    ],
+    "driver_sha256": "478c7751d8d9210d8278c6f05144bd4bf2f5f92dca6cdbee4af4e1ed7bc09784"
+  },
+  {
+    "name": "explore-rectangle-4",
+    "phase": "exploration",
+    "zero_based_positions": [
+      4
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      15,
+      19,
+      17
+    ],
+    "driver_sha256": "8829b85aa405e6986e41b751bc0c17437627cd2a8c7d593aa9f251d15de105b0"
+  },
+  {
+    "name": "explore-rectangle-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      64,
+      69,
+      65
+    ],
+    "driver_sha256": "6fa4410f268d6cd73e790b0fd0c91ab71b70e420b18393f45d15c02ead43e61f"
+  },
+  {
+    "name": "explore-circle-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Circle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      0
+    ],
+    "driver_sha256": "3823b52aaf6f52e184b5c0be2a11faede5035608ffc8418a344a981c8313f162"
+  },
+  {
+    "name": "explore-hexagon-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Hexagon",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      0
+    ],
+    "driver_sha256": "11b06b9e0ae71093f67d3bf6cbee6238a3e80f8c126fd0f67750d8a9f648aa3d"
+  },
+  {
+    "name": "explore-oval-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Oval",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      0
+    ],
+    "driver_sha256": "3018fa48fdfd15c5b0fff228c8721f78e1b1fe416cfe28bc9635ce00ee01c593"
+  },
+  {
+    "name": "explore-square-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Square",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      0
+    ],
+    "driver_sha256": "3179845625016751206c395fac6717a6afc08ec72290dfb939f12a7b08e3c4f1"
+  },
+  {
+    "name": "explore-triangle-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Triangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      0
+    ],
+    "driver_sha256": "1d1fe3426c2273757af692c0e042b1695b672d15b9e6d93d797ac73a3def1320"
+  },
+  {
+    "name": "part-I-frozen",
+    "phase": "part-I-final",
+    "zero_based_positions": [
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      64,
+      64,
+      56,
+      63,
+      58,
+      60,
+      67,
+      58,
+      53,
+      59
+    ],
+    "driver_sha256": "6fa4410f268d6cd73e790b0fd0c91ab71b70e420b18393f45d15c02ead43e61f"
+  },
+  {
+    "name": "explore-pair-0-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      0,
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      100
+    ],
+    "driver_sha256": "891660b20d5f72eb3bb13f6507d31bd93224f60a27c9bcbcab536e48c61155c6"
+  },
+  {
+    "name": "explore-pair-3-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      3,
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      100
+    ],
+    "driver_sha256": "39f4b6914ef58b6067edd4b8fbb87ae4a4e4bf3d204eb571bae55d228ba62e7d"
+  },
+  {
+    "name": "explore-pair-4-5",
+    "phase": "exploration",
+    "zero_based_positions": [
+      4,
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      100
+    ],
+    "driver_sha256": "139e18ffbaee571f6a2f5490f855e11e7216cdf91d207409548e5789dd7bebdb"
+  },
+  {
+    "name": "explore-pair-0-4",
+    "phase": "exploration",
+    "zero_based_positions": [
+      0,
+      4
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      20
+    ],
+    "driver_sha256": "79e889d19c3c4cee241ca8ced24b65de808f646e8abb22206b97626008f5265a"
+  },
+  {
+    "name": "part-II-frozen",
+    "phase": "part-II-final",
+    "zero_based_positions": [
+      4,
+      5
+    ],
+    "shape": "Rectangle",
+    "changed_lines": [
+      39,
+      42
+    ],
+    "scores": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "driver_sha256": "139e18ffbaee571f6a2f5490f855e11e7216cdf91d207409548e5789dd7bebdb"
+  }
+]

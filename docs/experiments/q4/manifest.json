@@ -1,0 +1,18 @@
+{
+  "commit": "116ac7201c793f09fba5cefab646af6a4b65fdf7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "java": "java version \"21.0.8\" 2025-07-15 LTS\nJava(TM) SE Runtime Environment (build 21.0.8+12-LTS-250)\nJava HotSpot(TM) 64-Bit Server VM (build 21.0.8+12-LTS-250, mixed mode, sharing)\n",
+  "source_hashes": {
+    "Driver.java": "3a562ffa5604b5c983f1c35fabc75e09eeae5275156f5198cf4934b67f2c2e70",
+    "list\\ShapesCatalog.java": "684b5a5695e59cf19691c64e6b8f493402f76383465b646f5b9e73e3412bdf67",
+    "list\\TimeLimitExceededException.java": "eacad4e382eb73b046debed862bc9de6894c2cf9149aeb3d1f462430613c5941",
+    "shapes\\Circle.java": "4ad3447eaf67f12382c9e5852dcb646e43c31ad25c78d2f8072638cc9ab45f24",
+    "shapes\\Hexagon.java": "55c9766a56716bc6101d3416f918cba2a3408c19d3c5486cfc2a4e36dc2e682b",
+    "shapes\\Oval.java": "f648fc526d4672cffcdae817ea4be1093b3a10e4ec2967e81fb052e597f7272d",
+    "shapes\\Rectangle.java": "88cca56daf4e81f5539e51b7352374cbf97bbb0f9a6b765331884f3b71adc344",
+    "shapes\\Shape.java": "3c09cadaf16dad171aeffff53969f3e8af2b8ae7bcb13ac7ce60c738537093df",
+    "shapes\\ShapeUtils.java": "99bbd95c089f98194ef7b30e97044871ff285e07d63f87cb39c96be1cd616f51",
+    "shapes\\Square.java": "1e49eabe5c98d2b2471c89a8c7067310731a9a92d839ff620fed957b3cd8318f",
+    "shapes\\Triangle.java": "8a9724bcfa0378c3b066629cb88f5e0ff301b3f010cf7953fe5a4467206d9f5c"
+  }
+}
